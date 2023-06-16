@@ -1,12 +1,12 @@
 import React from "react";
 import Image from "next/image";
 import { Button } from "./Button";
-
-interface TransactionDetailsProps {
+export interface TransactionDetailsProps {
     buttonYes: boolean;
+    value: string;
+    status: string;
 }
-
-export function TransactionDetails({ buttonYes }: TransactionDetailsProps) {
+export function TransactionDetails({ buttonYes, value, status }: TransactionDetailsProps) {
     return (
         <div className="flex flex-col justify-between w-[640px] py-2">
             <div className="flex justify-between">
@@ -17,8 +17,8 @@ export function TransactionDetails({ buttonYes }: TransactionDetailsProps) {
                         <Image src={"btc.svg"} alt="logo" width={32} height={32} />
                     </div>
                     <div>
-                        <div>1.29 BTC</div>
-                        <div>Sucessfull!</div>
+                        <div>{value}</div>
+                        <div>{status}</div>
                     </div>
                 </div>
                 <div>

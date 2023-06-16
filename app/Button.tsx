@@ -37,8 +37,8 @@ export function Button({ text, shade, onClick }: ButtonProps) {
       : text;
   
       const buttonClass = shade === "dark"
-      ? "text-white text-base rounded-full py-4 px-6 bg-popat font-semibold cursor-pointer mx-2"
-      : "text-dark-green text-base rounded-full py-4 px-6 bg-neon font-semibold cursor-pointer mx-2";
+      ? "text-white text-base rounded-full py-4 px-6 bg-popat font-semibold cursor-pointer mx-2 w-[160px]"
+      : "text-dark-green text-base rounded-full py-4 px-6 bg-neon font-semibold cursor-pointer mx-2 w-[230px]";
   
     return (
         <div>

@@ -4,9 +4,10 @@ import Image from "next/image";
 interface InputProps {
   value: string;
   shade: string;
+  image: string;
 }
 
-export function Input({ value, shade }: InputProps) {
+export function Input({ value, shade, image }: InputProps) {
   const backgroundColor = shade === "light" ? "bg-white" : "bg-popat";
   const textColor = shade === "light" ? "text-black" : "text-white";
 
@@ -15,7 +16,9 @@ export function Input({ value, shade }: InputProps) {
       <div className={`text-dark-grey ${textColor}`}>{value}</div>
       <div className="flex justify-between">
         <input type="text" className={`font-bold w-[320px] text-4xl ${backgroundColor}  outline-none ${textColor}`} placeholder="0" />
-        <Image src={"btc.svg"} alt="logo" width={32} height={32} />
+        {
+          image && <Image src={image} alt="logo" width={32} height={32} />
+        }
       </div>
     </div>
   );

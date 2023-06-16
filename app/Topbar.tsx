@@ -16,7 +16,7 @@ export function Topbar() {
   }, [account, getWBTCBalance]);
 
   return (
-    <div className="flex justify-between items-center w-full px-9 pt-11">
+    <div className="flex justify-between items-center w-full px-9 pt-9">
       <div className="text-white text-4xl">
         <Image src={"logo.svg"} alt="logo" width={157} height={33} />
       </div>
