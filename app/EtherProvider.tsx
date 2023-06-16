@@ -9,6 +9,7 @@ type EtherContextType = {
   provider: ethers.BrowserProvider | null;
   loadWeb3Modal: () => Promise<void>;
   getWBTCBalance: (account: string) => Promise<string>;
+   logout: () => void; // Add this line
 };
 
 const WBTC_CONTRACT_ADDRESS = "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599"; // replace with actual wBTC contract address
@@ -23,6 +24,7 @@ export const EtherContext = createContext<EtherContextType>({
   provider: null,
   loadWeb3Modal: async () => {},
   getWBTCBalance: async () => "0",
+  logout: () => {}
 });
 
 type Props = {
@@ -30,24 +32,36 @@ type Props = {
 };
 
 export function EtherProvider({ children }: Props) {
-  const [account, setAccount] = useState<string | null>(null);
   const [provider, setProvider] = useState<ethers.BrowserProvider | null>(null);
 
+  const storedAccount = localStorage.getItem('account');
+  const [account, setAccount] = useState<string | null>(storedAccount);
+
   const loadWeb3Modal = async () => {
-    // @ts-ignore
+    //@ts-ignore
     if (typeof window.ethereum !== 'undefined') {
-      // @ts-ignore
+      //@ts-ignore
       const web3Provider = new ethers.BrowserProvider(window.ethereum);
       setProvider(web3Provider);
       try {
-        // @ts-ignore
+        //@ts-ignore
         const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-        setAccount(accounts[0]);
+        const account = accounts[0];
+        setAccount(account);
+        localStorage.setItem('account', account);
       } catch (err) {
         console.error(err);
       }
     }
   };
+
+  const logout = () => {
+    setAccount(null);
+    setProvider(null);
+    localStorage.removeItem('account');
+    window.location.reload();
+  }
+
 
   const getWBTCBalance = async (account: string) => {
     if (!provider) {
@@ -59,7 +73,7 @@ export function EtherProvider({ children }: Props) {
   }
 
   return (
-    <EtherContext.Provider value={{ account, provider, loadWeb3Modal, getWBTCBalance }}>
+    <EtherContext.Provider value={{ account, provider, loadWeb3Modal, getWBTCBalance, logout }}>
       {children}
     </EtherContext.Provider>
   );

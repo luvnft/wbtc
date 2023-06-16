@@ -6,9 +6,8 @@ import { Button } from "./Button";
 import { EtherContext } from './EtherProvider';
 
 export function Topbar() {
-  const { account, loadWeb3Modal, getWBTCBalance } = useContext(EtherContext);
+  const { account, loadWeb3Modal, getWBTCBalance, logout } = useContext(EtherContext);
   const [balance, setBalance] = useState(null);
-
   useEffect(() => {
     if (account) {
       getWBTCBalance(account).then(setBalance);
@@ -25,6 +24,7 @@ export function Topbar() {
           <>
             <Button text={`${balance} wBTC`} shade="dark" />
             <Button text={account} shade="light" />
+            <Image src={"logout.svg"} alt="logo" width={16} height={16} onClick={logout} className="cursor-pointer" />
           </>
         ) : (
           <Button text={'Connect Wallet'} shade="light" onClick={loadWeb3Modal} />

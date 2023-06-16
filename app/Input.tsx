@@ -5,9 +5,11 @@ interface InputProps {
   value: string;
   shade: string;
   image: string;
+  onChange?: (value: string) => void;
+  sendData? : string;
 }
 
-export function Input({ value, shade, image }: InputProps) {
+export function Input({ value, shade, image, onChange,sendData }: InputProps) {
   const backgroundColor = shade === "light" ? "bg-white" : "bg-popat";
   const textColor = shade === "light" ? "text-black" : "text-white";
 
@@ -15,7 +17,7 @@ export function Input({ value, shade, image }: InputProps) {
     <div className={`rounded-2xl p-4 m-2 w-[400px] ${backgroundColor}`}>
       <div className={`text-dark-grey ${textColor}`}>{value}</div>
       <div className="flex justify-between">
-        <input type="text" className={`font-bold w-[320px] text-4xl ${backgroundColor}  outline-none ${textColor}`} placeholder="0" />
+        <input value={sendData} onChange={e=>(onChange && onChange(e.currentTarget.value))} type="text" className={`font-semi-bold w-[320px] text-2xl ${backgroundColor}  outline-none ${textColor}`} placeholder="0" />
         {
           image && <Image src={image} alt="logo" width={32} height={32} />
         }
