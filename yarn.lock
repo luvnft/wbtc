@@ -467,6 +467,23 @@ browserslist@^4.21.5, "browserslist@>= 4.21.0":
     node-releases "^2.0.12"
     update-browserslist-db "^1.0.11"
 
+"btc-atomic-swap@file:../../untitled folder/btc-atomic-swap":
+  version "1.0.0"
+  resolved "file:../../untitled folder/btc-atomic-swap"
+  dependencies:
+    "@project-serum/anchor" "^0.26.0"
+    "@solana/web3.js" "^1.73.3"
+    axios "^1.3.4"
+    bitcoinjs-lib "^6.1.0"
+    chai "^4.3.7"
+    chalk "^5.2.0"
+    ecpair "^2.1.0"
+    encoding "^0.1.13"
+    ethers "^6.3.0"
+    supports-color "^9.3.1"
+    tiny-secp256k1 "^2.2.1"
+    ts-mocha "^10.0.0"
+
 bundle-name@^3.0.0:
   version "3.0.0"
   resolved "https://registry.npmjs.org/bundle-name/-/bundle-name-3.0.0.tgz"
