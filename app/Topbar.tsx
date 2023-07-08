@@ -7,7 +7,9 @@ import { EtherContext } from './EtherProvider';
 
 export function Topbar() {
   const { account, loadWeb3Modal, getWBTCBalance, logout } = useContext(EtherContext);
-  const [balance, setBalance] = useState(null);
+  // const [balance, setBalance] = useState(null);
+  const [balance, setBalance] = useState<string | null>(null);
+
   useEffect(() => {
     if (account) {
       getWBTCBalance(account).then(setBalance);
