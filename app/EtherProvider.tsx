@@ -9,7 +9,7 @@ type EtherContextType = {
   provider: ethers.BrowserProvider | null;
   loadWeb3Modal: () => Promise<void>;
   getWBTCBalance: (account: string) => Promise<string>;
-   logout: () => void; // Add this line
+  logout: () => void; // Add this line
 };
 
 const WBTC_CONTRACT_ADDRESS = "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599"; // replace with actual wBTC contract address
@@ -22,9 +22,9 @@ const ERC20_ABI = [
 export const EtherContext = createContext<EtherContextType>({
   account: null,
   provider: null,
-  loadWeb3Modal: async () => {},
+  loadWeb3Modal: async () => { },
   getWBTCBalance: async () => "0",
-  logout: () => {}
+  logout: () => { }
 });
 
 type Props = {
@@ -34,8 +34,20 @@ type Props = {
 export function EtherProvider({ children }: Props) {
   const [provider, setProvider] = useState<ethers.BrowserProvider | null>(null);
 
-  const storedAccount = localStorage.getItem('account');
+  // const storedAccount = localStorage.getItem('account');
+  // const [account, setAccount] = useState<string | null>(storedAccount);
+
+
+
+  /////
+
+  let storedAccount = null;
+  if (typeof window !== 'undefined') {
+    storedAccount = window.localStorage.getItem('account');
+  }
   const [account, setAccount] = useState<string | null>(storedAccount);
+
+  /////
 
   const loadWeb3Modal = async () => {
     //@ts-ignore
