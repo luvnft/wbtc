@@ -58,7 +58,7 @@ export function TransactionDetails({ buttonYes, value, status, timeRemaining }: 
                     {isButtonEnabled && !claimClicked ? (
                         <button className="text-dark-green text-base rounded-full py-4 px-6 bg-neon font-semibold cursor-pointer mx-2 w-[230px]"
                             onClick={() => setClaimClicked(true)}
-                        >Claim wBTC</button>
+                        >Claim Wrapped BTC</button>
                     ) : claimClicked ? (
                         <>
                             <div className="text-right text-black">Received at 0x4567...5678</div>
